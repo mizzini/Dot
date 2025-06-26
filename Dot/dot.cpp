@@ -440,14 +440,14 @@ void ClearConsole()
 #if defined(_WIN32)
     system("cls");
 #else
-    std::cout << "\033[2J\033[1;1H"; // ANSI escape to clear screen
+    std::cout << "\033[2J\033[1;1H"; // clear screen
 #endif
 }
 
 // DebugOverlay
 void PrintDotHeader()
 {
-    const char* PURPLE_ = "\033[1;35m";  // Bold magenta
+    const char* PURPLE_ = "\033[1;35m";
     const char* RESET = "\033[0m";
 
     std::cout << PURPLE_;
@@ -472,7 +472,6 @@ void DebugOverlay::Draw()
 
     if (currentSceneName != lastPrintedSceneName)
     {
-        //ClearConsole();
         PrintDotHeader();
 
         if (scene && scene->GetRoot())
@@ -501,8 +500,6 @@ void DotApp::Run(int width, int height, const std::string& title)
         // Output scene hierarchy to console.
         DebugOverlay::Draw();
 
-        /*InputManager::Get().Update(dt);
-        SceneManager::Get().ProcessInput();*/
         SceneManager::Get().Update(dt);
 
         BeginDrawing();
